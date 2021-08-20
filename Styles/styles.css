@@ -1,14 +1,7 @@
 body {
   background-color: #f9f7fe;
 }
-a {
-  color: #007bff;
-  text-decoration: none;
-  background-color: transparent;
-}
-a:hover {
-  text-decoration: underline;
-}
+
 .main {
   border: solid 2px #5fadea;
   border-radius: 10px;
@@ -82,4 +75,22 @@ a:hover {
 .footer {
   text-align: center;
   font-size: 12px;
+}
+a,
+a:hover,
+.active-temp,
+.active-temp:hover {
+  color: #6b6868;
+  text-decoration: none;
+}
+a {
+  cursor: default;
+}
+a:hover {
+  cursor: pointer;
+}
+.active-temp,
+.active-temp:hover {
+  font-weight: bold;
+  cursor: default;
 }
