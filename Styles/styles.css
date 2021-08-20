@@ -1,0 +1,78 @@
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+}
+a:hover {
+  text-decoration: underline;
+}
+.main {
+  border: solid 2px #5fadea;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 100%;
+  height: 610px;
+  margin: 0 auto;
+  margin-top: 10px;
+  padding: 10px;
+}
+.title {
+  padding: 10px 0;
+  font-weight: bold;
+  margin: 0px;
+}
+.hours {
+  font-weight: bold;
+  color: #3f3b3b;
+  font-size: 15px;
+}
+.low-degree {
+  font-weight: bold;
+  color: #b1aeae;
+  font-size: 13px;
+}
+.high-degree {
+  font-weight: bold;
+  color: #858282;
+  font-size: 15px;
+}
+.humidity-status {
+  font-weight: inherit;
+  color: #6b6868;
+  font-size: 16px;
+}
+.day {
+  font-weight: bold;
+  color: #3f3b3b;
+  font-size: 15px;
+}
+
+.box-weather:hover {
+  background-color: #e5f7e7;
+}
+.temperature {
+  color: #6b6868;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 1;
+}
+.unit {
+  position: relative;
+  top: -20pxl;
+}
+.maincity {
+  font-weight: 600;
+  color: #6b6868;
+}
+.weathericone {
+  max-width: 50%;
+  max-height: 50%;
+}
+.form {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.footer{
+  text-align: center;
+  font-size: 12px;
+}

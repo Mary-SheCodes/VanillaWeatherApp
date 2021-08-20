@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <title>Wireframe to HTML/CSS</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="Styles/styles.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="container">
+        <div id="search-currentcity" class="row">
+          <form id="search-form" class="col form">
+            <div class="input-group">
+              <input
+                id="search-input"
+                type="text"
+                class="form-control"
+                placeholder="Enter City Name"
+                aria-label="City Name"
+                aria-describedby="basic-addon2"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary"
+                  type="submit"
+                  id="submit-addon2"
+                >
+                  Search
+                </button>
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="button-addon2"
+                >
+                  Current
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div id="city" class="col-3 my-auto maincity text-center">
+            <div>
+              <span id="current-city">Tehran</span>
+              <span>, </span>
+              <span id="current-country">Iran</span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="currentsituation-degree-icon"
+          class="row d-flex justify-content-center"
+        >
+          <div id="currentsituation" class="col-3 my-auto">
+            <div id="humidity" class="row">Humidity: 24%</div>
+            <div id="wind" class="row">Wind: 0 km/h</div>
+          </div>
+
+          <div id="status-icon" class="col-3 my-auto">
+            <div id="current-icon" class="row d-flex justify-content-center">
+              <img src="weathericones/partly_cloudy.png" class="weathericone" />
+            </div>
+
+            <div id="status" class="row d-flex justify-content-center">
+              Rainy
+            </div>
+          </div>
+
+          <div id="day-status" class="col-3 my-auto">
+            <div id="day" class="row d-flex justify-content-center"></div>
+            <div id="date" class="row d-flex justify-content-center"></div>
+            <div id="hour" class="row d-flex justify-content-center"></div>
+          </div>
+
+          <div id="current-degree" class="col-2 my-auto text-center">
+            <div id="degree" class="row">
+              <div class="temperature" id="temperature">0</div>
+              <div class="units">
+                <a href="#" id="celsius-link">°C</a> |
+                <a href="#" id="fahrenheit-link">°F</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="title">Next Hours</div>
+
+        <div id="next-hours" class="row d-flex justify-content-center">
+          <div id="first-hours" class="col box-weather">
+            <div
+              id="low-hours-degree"
+              class="row d-flex justify-content-center hours"
+            >
+              11:00
+            </div>
+            <div
+              id="high-hours-degree"
+              class="row d-flex justify-content-center high-degree"
+            >
+              22°
+            </div>
+            <div id="icon-hours" class="row d-flex justify-content-center">
+              <img src="weathericones/rain_s_cloudy.png" alt="rain_s_cloudy" />
+            </div>
+            <div
+              id="humidity-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+
+          <div id="second-hours" class="col box-weather">
+            <div
+              id="low-hours-degree"
+              class="row d-flex justify-content-center hours"
+            >
+              12:00
+            </div>
+            <div
+              id="high-hours-degree"
+              class="row d-flex justify-content-center high-degree"
+            >
+              22°
+            </div>
+            <div id="icon-hours" class="row d-flex justify-content-center">
+              <img src="weathericones/rain_s_cloudy.png" alt="rain_s_cloudy" />
+            </div>
+            <div
+              id="humidity-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+
+          <div id="third-hours" class="col box-weather">
+            <div
+              id="low-hours-degree"
+              class="row d-flex justify-content-center hours"
+            >
+              13:00
+            </div>
+            <div
+              id="high-hours-degree"
+              class="row d-flex justify-content-center high-degree"
+            >
+              22°
+            </div>
+            <div id="icon-hours" class="row d-flex justify-content-center">
+              <img src="weathericones/rain_s_cloudy.png" alt="rain_s_cloudy" />
+            </div>
+            <div
+              id="humidity-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+
+          <div id="fourth-hours" class="col box-weather">
+            <div
+              id="low-hours-degree"
+              class="row d-flex justify-content-center hours"
+            >
+              14:00
+            </div>
+            <div
+              id="high-hours-degree"
+              class="row d-flex justify-content-center high-degree"
+            >
+              22°
+            </div>
+            <div id="icon-hours" class="row d-flex justify-content-center">
+              <img src="weathericones/rain_s_cloudy.png" alt="rain_s_cloudy" />
+            </div>
+            <div
+              id="humidity-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+
+          <div id="fifth-hours" class="col box-weather">
+            <div
+              id="low-hours-degree"
+              class="row d-flex justify-content-center hours"
+            >
+              15:00
+            </div>
+            <div
+              id="high-hours-degree"
+              class="row d-flex justify-content-center high-degree"
+            >
+              22°
+            </div>
+            <div id="icon-hours" class="row d-flex justify-content-center">
+              <img src="weathericones/rain_s_cloudy.png" alt="rain_s_cloudy" />
+            </div>
+            <div
+              id="humidity-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+
+          <div id="sixth-hours" class="col box-weather">
+            <div
+              id="low-hours-degree"
+              class="row d-flex justify-content-center hours"
+            >
+              16:00
+            </div>
+            <div
+              id="high-hours-degree"
+              class="row d-flex justify-content-center high-degree"
+            >
+              22°
+            </div>
+            <div id="icon-hours" class="row d-flex justify-content-center">
+              <img src="weathericones/rain_s_cloudy.png" alt="rain_s_cloudy" />
+            </div>
+            <div
+              id="humidity-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-hours"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+        </div>
+
+        <div class="title">Next Days</div>
+
+        <div id="next-days" class="row d-flex justify-content-center">
+          <div id="first-day" class="col box-weather">
+            <div id="day" class="row d-flex justify-content-center day">Tu</div>
+            <div id="low-high-degree" class="row d-flex justify-content-center">
+              <div class="col text-center low-degree">
+                22°/ <span class="high-degree">35°</span>
+              </div>
+            </div>
+            <div id="icon-day" class="row d-flex justify-content-center">
+              <img src="weathericones/partly_cloudy.png" alt="partly_cloudy" />
+            </div>
+            <div
+              id="humidity-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+
+          <div id="second-day" class="col box-weather">
+            <div id="day" class="row d-flex justify-content-center day">We</div>
+            <div id="low-high-degree" class="row d-flex justify-content-center">
+              <div class="col text-center low-degree">
+                22°/ <span class="high-degree">35°</span>
+              </div>
+            </div>
+            <div id="icon-day" class="row d-flex justify-content-center">
+              <img src="weathericones/partly_cloudy.png" alt="partly_cloudy" />
+            </div>
+            <div
+              id="humidity-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+
+          <div id="third-day" class="col box-weather">
+            <div id="day" class="row d-flex justify-content-center day">Th</div>
+            <div id="low-high-degree" class="row d-flex justify-content-center">
+              <div class="col text-center low-degree">
+                22°/ <span class="high-degree">35°</span>
+              </div>
+            </div>
+            <div id="icon-day" class="row d-flex justify-content-center">
+              <img src="weathericones/partly_cloudy.png" alt="partly_cloudy" />
+            </div>
+            <div
+              id="humidity-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+
+          <div id="fourth-day" class="col box-weather">
+            <div id="day" class="row d-flex justify-content-center day">Fr</div>
+            <div id="low-high-degree" class="row d-flex justify-content-center">
+              <div class="col text-center low-degree">
+                22°/ <span class="high-degree">35°</span>
+              </div>
+            </div>
+            <div id="icon-day" class="row d-flex justify-content-center">
+              <img src="weathericones/partly_cloudy.png" alt="partly_cloudy" />
+            </div>
+            <div
+              id="humidity-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+
+          <div id="fifth-day" class="col box-weather">
+            <div id="day" class="row d-flex justify-content-center day">Sa</div>
+            <div id="low-high-degree" class="row d-flex justify-content-center">
+              <div class="col text-center low-degree">
+                22°/ <span class="high-degree">35°</span>
+              </div>
+            </div>
+            <div id="icon-day" class="row d-flex justify-content-center">
+              <img src="weathericones/partly_cloudy.png" alt="partly_cloudy" />
+            </div>
+            <div
+              id="humidity-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+
+          <div id="sixth-day" class="col box-weather">
+            <div id="day" class="row d-flex justify-content-center day">Su</div>
+            <div id="low-high-degree" class="row d-flex justify-content-center">
+              <div class="col text-center low-degree">
+                22°/ <span class="high-degree">35°</span>
+              </div>
+            </div>
+            <div id="icon-day" class="row d-flex justify-content-center">
+              <img src="weathericones/partly_cloudy.png" alt="partly_cloudy" />
+            </div>
+            <div
+              id="humidity-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              22%
+            </div>
+            <div
+              id="status-day"
+              class="row d-flex justify-content-center humidity-status"
+            >
+              Rainy
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><a href="https://github.com/maryam-mohebbi/SheCodesPlusWorkShops" target="_blank">
+    Open-Source Code</a>
+       by Maryam Mohebbi</div>
+    <script src="JS/hwjs.js"></script>
+  </body>
+</html>
