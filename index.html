@@ -10,7 +10,7 @@
       integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
       crossorigin="anonymous"
     />
-    <title>Wireframe to HTML/CSS</title>
+    <title>Weather App</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="Styles/styles.css" />
   </head>
@@ -67,7 +67,12 @@
 
           <div id="status-icon" class="col-3 my-auto">
             <div id="current-icon" class="row d-flex justify-content-center">
-              <img src="weathericones/partly_cloudy.png" class="weathericone" />
+              <img
+                src="weathericones/partly_cloudy.png"
+                class="weathericone"
+                alt="partly_cloudy"
+                id="defaultIcon"
+              />
             </div>
 
             <div id="status" class="row d-flex justify-content-center">
@@ -425,9 +430,15 @@
         </div>
       </div>
     </div>
-    <div class="footer"><a href="https://github.com/maryam-mohebbi/SheCodesPlusWorkShops" target="_blank">
-    Open-Source Code</a>
-       by Maryam Mohebbi</div>
+    <div class="footer">
+      <a
+        href="https://github.com/maryam-mohebbi/SheCodesPlusWorkShops"
+        target="_blank"
+      >
+        Open-Source Code</a
+      >
+      by Maryam Mohebbi
+    </div>
     <script src="JS/hwjs.js"></script>
   </body>
 </html>

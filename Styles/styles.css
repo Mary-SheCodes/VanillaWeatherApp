@@ -1,3 +1,6 @@
+body {
+  background-color: #f9f7fe;
+}
 a {
   color: #007bff;
   text-decoration: none;
@@ -15,6 +18,8 @@ a:hover {
   margin: 0 auto;
   margin-top: 10px;
   padding: 10px;
+  background-color: #fcfbfa;
+  box-shadow: 0 30px 50px rgb(65 50 100 / 8%);
 }
 .title {
   padding: 10px 0;
@@ -65,14 +70,16 @@ a:hover {
   color: #6b6868;
 }
 .weathericone {
-  max-width: 50%;
-  max-height: 50%;
+  max-width: 70%;
+  max-height: 70%;
+  display: block;
+  margin: 0 auto;
 }
 .form {
   padding-top: 10px;
   padding-bottom: 10px;
 }
-.footer{
+.footer {
   text-align: center;
   font-size: 12px;
 }

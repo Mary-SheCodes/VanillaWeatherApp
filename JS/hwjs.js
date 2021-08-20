@@ -73,6 +73,7 @@ function showWeatherSearchedData(response) {
   let wind = `Wind: ${response.data.wind.speed} m/s`;
   let weather = response.data.weather[0].description;
   weather = weather.charAt(0).toUpperCase() + weather.slice(1);
+  let icon = response.data.weather[0].icon;
 
   let defaultCity = document.querySelector("#current-city");
   let defaultCountry = document.querySelector("#current-country");
@@ -80,6 +81,7 @@ function showWeatherSearchedData(response) {
   let defaultHumidity = document.querySelector("#humidity");
   let defaultWind = document.querySelector("#wind");
   let defaultWeather = document.querySelector("#status");
+  let defaultIcon = document.querySelector("#defaultIcon");
 
   defaultCity.innerHTML = city;
   defaultCountry.innerHTML = country;
@@ -87,6 +89,11 @@ function showWeatherSearchedData(response) {
   defaultHumidity.innerHTML = humidity;
   defaultWind.innerHTML = wind;
   defaultWeather.innerHTML = weather;
+  defaultIcon.setAttribute(
+    "src",
+    `https://openweathermap.org/img/wn/${icon}@2x.png`
+  );
+  defaultIcon.setAttribute("alt", weather);
 }
 
 function navigation(event) {
