@@ -117,7 +117,56 @@ function convertToFahrenheit() {
   fahrenheit.classList.add("active-temp");
 }
 
-showCurrentTime();
+function displayForecastDay() {
+  let forecastDays = document.querySelector("#next-days");
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  let forecastHTML = `<div class="row">`;
+
+  days.forEach(function (days) {
+    forecastHTML =
+      forecastHTML +
+      `
+<div id="forecast-day" class="col box-weather">
+<div id="day" class="day">${days}</div>
+<div id="low-high-degree">
+<span class="low-degree">22°/</span> <span class="high-degree">35°</span>
+</div>
+<div id="icon-day">
+<img src="weathericones/partly_cloudy.png" alt="partly_cloudy" />
+</div>
+<div id="humidity-day" class="humidity-status">22%</div>
+<div id="status-day" class="humidity-status">Rainy</div>
+</div>
+      `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastDays.innerHTML = forecastHTML;
+}
+
+function displayForecastHour() {
+  let forecastHours = document.querySelector("#next-hours");
+  let hours = ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
+  let forecastHTML = `<div class="row">`;
+
+  hours.forEach(function (hours) {
+    forecastHTML =
+      forecastHTML +
+      `
+<div id="first-hours" class="col box-weather">
+<div id="low-hours-degree" class="hours">${hours}</div>
+<div id="high-hours-degree" class="high-degree">22°</div>
+<div id="icon-hours">
+<img src="weathericones/rain_s_cloudy.png" alt="rain_s_cloudy" />
+</div>
+<div id="humidity-hours" class="humidity-status">22%</div>
+<div id="status-hours" class="humidity-status">Rainy</div>
+</div>
+     `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastHours.innerHTML = forecastHTML;
+}
+
 navigator.geolocation.getCurrentPosition(showPosition);
 
 let currentTemperture;
@@ -131,3 +180,7 @@ let celsius = document.querySelector("a#celsius-link");
 let fahrenheit = document.querySelector("a#fahrenheit-link");
 celsius.addEventListener("click", convertToCelsius);
 fahrenheit.addEventListener("click", convertToFahrenheit);
+
+displayForecastHour();
+displayForecastDay();
+showCurrentTime();
