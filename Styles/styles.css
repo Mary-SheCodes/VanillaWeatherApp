@@ -38,6 +38,7 @@ body {
   font-weight: inherit;
   color: #6b6868;
   font-size: 16px;
+  text-transform: capitalize;
 }
 .day {
   font-weight: bold;

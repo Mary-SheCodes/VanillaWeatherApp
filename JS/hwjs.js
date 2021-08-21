@@ -65,6 +65,15 @@ function getSearchCity(event) {
   axios(apiUrl).then(showWeatherSearchedData);
 }
 
+function getForecastDayApiUrl(coordinates) {
+  let lon = coordinates.lon;
+  let lat = coordinates.lat;
+  let apiKey = "23422500afd990f6bd64b60f46cf509a";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric
+`;
+  axios(apiUrl).then(displayForecastDays);
+}
+
 function showWeatherSearchedData(response) {
   let city = response.data.name;
   let country = response.data.sys.country;
@@ -94,6 +103,7 @@ function showWeatherSearchedData(response) {
     `https://openweathermap.org/img/wn/${icon}@2x.png`
   );
   defaultIcon.setAttribute("alt", weather);
+  getForecastDayApiUrl(response.data.coord);
 }
 
 function navigation(event) {
@@ -117,30 +127,46 @@ function convertToFahrenheit() {
   fahrenheit.classList.add("active-temp");
 }
 
-function displayForecastDay() {
-  let forecastDays = document.querySelector("#next-days");
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
-  let forecastHTML = `<div class="row">`;
+function formatDateForecast(time) {
+  let date = new Date(time * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
 
-  days.forEach(function (days) {
-    forecastHTML =
-      forecastHTML +
-      `
-<div id="forecast-day" class="col box-weather">
-<div id="day" class="day">${days}</div>
-<div id="low-high-degree">
-<span class="low-degree">22°/</span> <span class="high-degree">35°</span>
-</div>
-<div id="icon-day">
-<img src="weathericones/partly_cloudy.png" alt="partly_cloudy" />
-</div>
-<div id="humidity-day" class="humidity-status">22%</div>
-<div id="status-day" class="humidity-status">Rainy</div>
+function displayForecastDays(response) {
+  let forecast = response.data.daily;
+  let forecastDaysElement = document.querySelector("#next-days");
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (element, index) {
+    if (index < 7 && index > 0) {
+      forecastHTML =
+        forecastHTML +
+        `
+<div id="forecast-day" class="col-2 box-weather">
+  <div id="day" class="day">${formatDateForecast(element.dt)}</div>
+  <div id="low-high-degree">
+    <span class="low-degree">${Math.round(element.temp.min)}°/</span
+    ><span class="high-degree">${Math.round(element.temp.max)}°</span>
+  </div>
+  <div id="icon-day">
+    <img
+    class="weathericone"
+      src="https://openweathermap.org/img/wn/${element.weather[0].icon}@2x.png"
+      alt="partly_cloudy"
+    />
+  </div>
+  <div id="humidity-day" class="humidity-status">${element.humidity}%</div>
+  <div id="status-day" class="humidity-status">
+    ${element.weather[0].description}
+  </div>
 </div>
       `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
-  forecastDays.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+  forecastDaysElement.innerHTML = forecastHTML;
 }
 
 function displayForecastHour() {
@@ -182,5 +208,4 @@ celsius.addEventListener("click", convertToCelsius);
 fahrenheit.addEventListener("click", convertToFahrenheit);
 
 displayForecastHour();
-displayForecastDay();
 showCurrentTime();
