@@ -74,6 +74,15 @@ function getForecastDayApiUrl(coordinates) {
   axios(apiUrl).then(displayForecastDays);
 }
 
+function getForecastHourApiUrl(coordinates) {
+  let lon = coordinates.lon;
+  let lat = coordinates.lat;
+  let apiKey = "23422500afd990f6bd64b60f46cf509a";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric
+`;
+  axios(apiUrl).then(displayForecastHour);
+}
+
 function showWeatherSearchedData(response) {
   let city = response.data.name;
   let country = response.data.sys.country;
@@ -104,6 +113,7 @@ function showWeatherSearchedData(response) {
   );
   defaultIcon.setAttribute("alt", weather);
   getForecastDayApiUrl(response.data.coord);
+  getForecastHourApiUrl(response.data.coord);
 }
 
 function navigation(event) {
@@ -137,11 +147,11 @@ function formatDateForecast(time) {
 function displayForecastDays(response) {
   let forecast = response.data.daily;
   let forecastDaysElement = document.querySelector("#next-days");
-  let forecastHTML = `<div class="row">`;
+  let forecastDayHTML = `<div class="row">`;
   forecast.forEach(function (element, index) {
     if (index < 7 && index > 0) {
-      forecastHTML =
-        forecastHTML +
+      forecastDayHTML =
+        forecastDayHTML +
         `
 <div id="forecast-day" class="col-2 box-weather">
   <div id="day" class="day">${formatDateForecast(element.dt)}</div>
@@ -164,33 +174,51 @@ function displayForecastDays(response) {
       `;
     }
   });
-  forecastHTML = forecastHTML + `</div>`;
-  console.log(forecastHTML);
-  forecastDaysElement.innerHTML = forecastHTML;
+  forecastDayHTML = forecastDayHTML + `</div>`;
+  forecastDaysElement.innerHTML = forecastDayHTML;
 }
 
-function displayForecastHour() {
-  let forecastHours = document.querySelector("#next-hours");
-  let hours = ["11:00", "12:00", "13:00", "14:00", "15:00", "16:00"];
-  let forecastHTML = `<div class="row">`;
+function formatHourForecast(time) {
+  let date = new Date(time * 1000);
+  let hour = date.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  hour = `${hour}:00`;
+  return hour;
+}
 
-  hours.forEach(function (hours) {
-    forecastHTML =
-      forecastHTML +
-      `
+function displayForecastHour(response) {
+  let forecast = response.data.hourly;
+  let forecastHourElement = document.querySelector("#next-hours");
+  let forecastHourHTML = `<div class="row">`;
+
+  forecast.forEach(function (element, index) {
+    if (index < 7 && index > 0) {
+      forecastHourHTML =
+        forecastHourHTML +
+        `
 <div id="first-hours" class="col box-weather">
-<div id="low-hours-degree" class="hours">${hours}</div>
-<div id="high-hours-degree" class="high-degree">22°</div>
+<div id="low-hours-degree" class="hours">${formatHourForecast(element.dt)}</div>
+<div id="high-hours-degree" class="high-degree">${Math.round(element.temp)}
+        °</div>
 <div id="icon-hours">
-<img src="weathericones/rain_s_cloudy.png" alt="rain_s_cloudy" />
-</div>
-<div id="humidity-hours" class="humidity-status">22%</div>
-<div id="status-hours" class="humidity-status">Rainy</div>
+<img
+    class="weathericone"
+      src="https://openweathermap.org/img/wn/${element.weather[0].icon}@2x.png"
+      alt="partly_cloudy"
+    /></div>
+<div id="humidity-hours" class="humidity-status">${element.humidity}%</div>
+<div id="status-hours" class="humidity-status">${
+          element.weather[0].description
+        }</div>
 </div>
      `;
+    }
   });
-  forecastHTML = forecastHTML + `</div>`;
-  forecastHours.innerHTML = forecastHTML;
+
+  forecastHourHTML = forecastHourHTML + `</div>`;
+  forecastHourElement.innerHTML = forecastHourHTML;
 }
 
 navigator.geolocation.getCurrentPosition(showPosition);
@@ -207,5 +235,4 @@ let fahrenheit = document.querySelector("a#fahrenheit-link");
 celsius.addEventListener("click", convertToCelsius);
 fahrenheit.addEventListener("click", convertToFahrenheit);
 
-displayForecastHour();
 showCurrentTime();
