@@ -163,7 +163,7 @@ function displayForecastDays(response) {
     <img
     class="weathericone"
       src="https://openweathermap.org/img/wn/${element.weather[0].icon}@2x.png"
-      alt="partly_cloudy"
+      alt="${element.weather[0].description}"
     />
   </div>
   <div id="humidity-day" class="humidity-status">${element.humidity}%</div>
@@ -190,6 +190,7 @@ function formatHourForecast(time) {
 
 function displayForecastHour(response) {
   let forecast = response.data.hourly;
+  console.log(forecast);
   let forecastHourElement = document.querySelector("#next-hours");
   let forecastHourHTML = `<div class="row">`;
 
@@ -206,7 +207,7 @@ function displayForecastHour(response) {
 <img
     class="weathericone"
       src="https://openweathermap.org/img/wn/${element.weather[0].icon}@2x.png"
-      alt="partly_cloudy"
+      alt="${element.weather[0].description}"
     /></div>
 <div id="humidity-hours" class="humidity-status">${element.humidity}%</div>
 <div id="status-hours" class="humidity-status">${
