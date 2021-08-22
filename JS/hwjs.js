@@ -91,7 +91,9 @@ function showWeatherSearchedData(response) {
   let wind = `Wind: ${response.data.wind.speed} m/s`;
   let weather = response.data.weather[0].description;
   weather = weather.charAt(0).toUpperCase() + weather.slice(1);
-  let icon = response.data.weather[0].icon;
+  let icon = response.data.weather[0].description;
+  icon = icon.split(" ").join("_");
+  icon = `weathericons/${icon}.png`;
 
   let defaultCity = document.querySelector("#current-city");
   let defaultCountry = document.querySelector("#current-country");
@@ -107,10 +109,8 @@ function showWeatherSearchedData(response) {
   defaultHumidity.innerHTML = humidity;
   defaultWind.innerHTML = wind;
   defaultWeather.innerHTML = weather;
-  defaultIcon.setAttribute(
-    "src",
-    `https://openweathermap.org/img/wn/${icon}@2x.png`
-  );
+
+  defaultIcon.setAttribute("src", icon);
   defaultIcon.setAttribute("alt", weather);
   getForecastDayApiUrl(response.data.coord);
   getForecastHourApiUrl(response.data.coord);
@@ -147,9 +147,12 @@ function formatDateForecast(time) {
 function displayForecastDays(response) {
   let forecast = response.data.daily;
   let forecastDaysElement = document.querySelector("#next-days");
+
   let forecastDayHTML = `<div class="row">`;
   forecast.forEach(function (element, index) {
     if (index < 7 && index > 0) {
+      let icon = element.weather[0].description;
+      icon = icon.split(" ").join("_");
       forecastDayHTML =
         forecastDayHTML +
         `
@@ -162,7 +165,7 @@ function displayForecastDays(response) {
   <div id="icon-day">
     <img
     class="weathericone"
-      src="https://openweathermap.org/img/wn/${element.weather[0].icon}@2x.png"
+      src= "weathericons/${icon}.png"
       alt="${element.weather[0].description}"
     />
   </div>
@@ -190,12 +193,13 @@ function formatHourForecast(time) {
 
 function displayForecastHour(response) {
   let forecast = response.data.hourly;
-  console.log(forecast);
   let forecastHourElement = document.querySelector("#next-hours");
   let forecastHourHTML = `<div class="row">`;
 
   forecast.forEach(function (element, index) {
     if (index < 7 && index > 0) {
+      let icon = element.weather[0].description;
+      icon = icon.split(" ").join("_");
       forecastHourHTML =
         forecastHourHTML +
         `
@@ -206,7 +210,7 @@ function displayForecastHour(response) {
 <div id="icon-hours">
 <img
     class="weathericone"
-      src="https://openweathermap.org/img/wn/${element.weather[0].icon}@2x.png"
+      src= "weathericons/${icon}.png"
       alt="${element.weather[0].description}"
     /></div>
 <div id="humidity-hours" class="humidity-status">${element.humidity}%</div>
