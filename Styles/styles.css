@@ -103,3 +103,6 @@ a:hover {
   font-weight: bold;
   cursor: default;
 }
+.status {
+  text-transform: capitalize;
+}
