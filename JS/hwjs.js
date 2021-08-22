@@ -156,7 +156,7 @@ function displayForecastDays(response) {
       forecastDayHTML =
         forecastDayHTML +
         `
-<div id="forecast-day" class="col-2 box-weather">
+<div id="forecast-day" class="col box-weather">
   <div id="day" class="day">${formatDateForecast(element.dt)}</div>
   <div id="low-high-degree">
     <span class="low-degree">${Math.round(element.temp.min)}°/</span
